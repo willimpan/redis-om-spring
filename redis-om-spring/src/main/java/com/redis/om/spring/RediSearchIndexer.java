@@ -108,7 +108,8 @@ public class RediSearchIndexer {
 
       List<Field> fields = new ArrayList<>();
 
-      for (java.lang.reflect.Field field : cl.getDeclaredFields()) {
+      final ArrayList<java.lang.reflect.Field> arrayList = com.redis.om.spring.util.ObjectUtils.getAllFields(cl);
+      for (java.lang.reflect.Field field : arrayList) {
         fields.addAll(findIndexFields(field, null, idxType == IndexDefinition.Type.JSON));
 
         // @DocumentScore
